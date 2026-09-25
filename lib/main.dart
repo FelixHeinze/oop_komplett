@@ -3,7 +3,8 @@ import 'pages/oop1.dart';
 import 'pages/oop2.dart';
 import 'pages/oop3.dart';
 import 'pages/oop4.dart';
-
+//angedacht ist alle oop projekte in einer flutter app anzulegen und diese auf verschiedene seiten 
+// darzustellen
 void main() => runApp(const OopApp());
 
 class OopApp extends StatelessWidget {
