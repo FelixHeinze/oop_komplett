@@ -43,7 +43,7 @@ class _OopNavigationState extends State<OopNavigation> {
 
   final _titles = const [
     'OOP 1 – Klassen & Konstruktoren',
-    'OOP 2 – Benannte Konstruktoren & Enums', // seiten inkl. beschreibung für nvg bar
+    'OOP 2 – Benannte Konstruktoren & Enums', // seiten beschreibung für index 
     'OOP 3 – Getter & Setter',
     'OOP 4 – Komposition & Aggregation',
   ];
