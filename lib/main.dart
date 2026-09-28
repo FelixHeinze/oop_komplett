@@ -3,6 +3,8 @@ import 'pages/oop1.dart';
 import 'pages/oop2.dart';
 import 'pages/oop3.dart';
 import 'pages/oop4.dart';
+import 'pages/oop5.dart';
+import 'pages/oop6.dart';
 //angedacht ist alle oop projekte in einer flutter app anzulegen und diese auf verschiedene seiten 
 // darzustellen
 void main() => runApp(const OopApp());
@@ -39,6 +41,8 @@ class _OopNavigationState extends State<OopNavigation> {
     Oop2Page(),
     Oop3Page(),
     Oop4Page(),
+    Oop5Page(),
+    Oop6Page()
   ];
 
   final _titles = const [
@@ -46,6 +50,9 @@ class _OopNavigationState extends State<OopNavigation> {
     'OOP 2 – Benannte Konstruktoren & Enums', // seiten beschreibung für index 
     'OOP 3 – Getter & Setter',
     'OOP 4 – Komposition & Aggregation',
+    'OOP 5 – Methoden',
+    'OOP 6 – Vererbung',
+    
   ];
 
   @override
@@ -69,6 +76,8 @@ class _OopNavigationState extends State<OopNavigation> {
           NavigationDestination(icon: Icon(Icons.looks_two), label: 'OOP 2'),
           NavigationDestination(icon: Icon(Icons.looks_3), label: 'OOP 3'),
           NavigationDestination(icon: Icon(Icons.looks_4), label: 'OOP 4'),
+          NavigationDestination(icon: Icon(Icons.looks_5), label: 'OOP 5'),
+          NavigationDestination(icon: Icon(Icons.looks_6), label: 'OOP 6'),
         ],
       ),
     );
