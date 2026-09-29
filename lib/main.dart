@@ -6,7 +6,8 @@ import 'pages/oop3.dart';
 import 'pages/oop4.dart';
 import 'pages/oop5.dart';
 import 'pages/oop6.dart';
-
+//angedacht ist alle oop projekte in einer flutter app anzulegen und diese auf verschiedene seiten 
+// darzustellen
 void main() => runApp(const OopApp());
 
 class OopApp extends StatelessWidget {
@@ -46,6 +47,7 @@ class _OopNavigationState extends State<OopNavigation> {
     Oop5Page(),
     Oop6Page(),
   ];
+  // nächste asulagerung in extra menü da viele oop seiten anfallen werden 
 
   final _titles = const [
     'OOP 1 – Klassen & Konstruktoren',
