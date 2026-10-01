@@ -1,9 +1,13 @@
+///enum für Geschlechter
 enum Geschlecht {
+  ///eintrag weiblich
   weiblich,
+  ///eintrag männlich
   maennlich,
+  ///eintrag divers
   divers,
 }
-// enum als geschlecht 
+
 class Teilnehmer {
   final String nachname;
   final String vorname;
