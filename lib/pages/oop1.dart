@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/teilnehmer.dart';
-
+///oop1.dart seite die teilnehmer klasse und die objekterstellung zeigt
 class Oop1Page extends StatelessWidget {
-  const Oop1Page({super.key});
-// klasse bauen und objekte erzeugen für oop1 
+  const Oop1Page({super.key}); // stateless widget da keine zustandsänderung nötig ist, nur anzeigen der teilnehmerobjekte
+/// klasse bauen und objekte erzeugen für oop1 
   @override
   Widget build(BuildContext context) {
     final people = [
@@ -26,7 +26,7 @@ class Oop1Page extends StatelessWidget {
         abschlussnote: 2.3,
       ),
     ];
- // beispielmenschen 
+ // beispielmenschen statisch
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -37,6 +37,7 @@ class Oop1Page extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         ...people.map((p) => Card( // kurze beschreibung oberhalb der aufgabe um bei bedarf immer wieder reinzuschauen 
+        // ... zugriff auf die teilnehmerliste und mappt sie auf eine karte mit den jeweiligen werten
           child: ListTile(
             leading: const CircleAvatar(child: Icon(Icons.person)),
             title: Text('${p.vorname} ${p.nachname}'),
@@ -48,6 +49,7 @@ class Oop1Page extends StatelessWidget {
           ),
         )),
         const SizedBox(height: 12),
+        // beispielcode für die erstellung eines teilnehmerobjekts zur darstellung der konstruktoren und der eigenschaften
         _CodeCard(code: '''final person = Teilnehmer(
   nachname: 'Muster',
   vorname: 'Max',
@@ -64,10 +66,10 @@ class Oop1Page extends StatelessWidget {
       ],
     );
   }
-
+/// hilfsmethode für datumsausgabe um lesbares format zu erhalten
   static String _date(DateTime d) => '${d.day.toString().padLeft(2, '0')}.${d.month.toString().padLeft(2, '0')}.${d.year}';
 }
-
+/// InfoCard ist ein widget, das eine Karte mit Titel, Untertitel und Text anzeigt
 class _InfoCard extends StatelessWidget {
   final String title, subtitle, text;
   const _InfoCard({required this.title, required this.subtitle, required this.text});
@@ -86,7 +88,7 @@ class _InfoCard extends StatelessWidget {
     ),
   );
 }
-
+/// codeCard ist ein widget für scrollbaren text
 class _CodeCard extends StatelessWidget {
   final String code;
   const _CodeCard({required this.code});

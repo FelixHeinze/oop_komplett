@@ -7,14 +7,20 @@ enum Geschlecht {
   ///eintrag divers
   divers,
 }
-
+///Klasse Teilnehmer mit Eigenschaften wie Nachname, Vorname, Geschlecht, Geburtstag und Abschlussnote
 class Teilnehmer {
+  /// Nachnahme muss angegeben werden
   final String nachname;
+  /// Vorname muss angegeben werden
   final String vorname;
+  /// Geschlecht muss angegeben werden, da es vordefiniert ist
   final Geschlecht geschlecht; // nimmt vordefeniertes geshclecht 
+  ///Geburtstag darf null sein, da nicht jeder Teilnehmer ein Geburtstag angegeben hat
   final DateTime? geburtstag;
+  ///Abschlussnote darf null sein, da nicht jeder Teilnehmer eine Abschlussnote angegeben hat
   final double? abschlussnote;
-//erstellt bauplan f+r teilnehmerobjekte mit eigenschaften 
+
+/// Konstruktor für die Klasse Teilnehmer, der die erforderlichen Eigenschaften initialisiert und optionale Eigenschaften zulässt.
   Teilnehmer({
     required this.nachname,
     required this.vorname,

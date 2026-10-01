@@ -1,16 +1,23 @@
+/// enum für die verschiedenen Maßeinheiten die für die berechnung benutzt werden
 enum MeasurementSystem {
+  ///eintrag millimeter
   mm(1),
+  ///eintrag zentimeter mit umrechung in millimeter
   cm(10),
+  ///eintrag dezimeter mit umrechung in millimeter
   dm(100),
+  ///eintrag meter mit umrechung in millimeter
   m(1000),
+  ///eintrag inch mit umrechung in millimeter
   inch(25.4),
+  ///eintrag feet mit umrechung in millimeter
   feet(304.8);
 
   const MeasurementSystem(this.millimetersPerUnit);
-
+///konstruktor für die enum der den mm wert entgegenimmt und in der variable millimetersPerUnit speichert
   final double millimetersPerUnit;
 }
-
+///klasse triangle mit den eigenschaften width und height die in mm gespeichert werden
 class Triangle {
   double _widthInMillimeters;
   double _heightInMillimeters;
@@ -20,7 +27,7 @@ class Triangle {
     required double height,
   })  : _widthInMillimeters = width,
         _heightInMillimeters = height;
-
+/// zu OOP 2 der konstruktor für die klasse Triangle der die Breite und Höhe in einer bestimmten maßeinheit entgegennimmt.
   factory Triangle({
     required double width,
     required double height,
@@ -30,7 +37,7 @@ class Triangle {
         width: width * system.millimetersPerUnit,
         height: height * system.millimetersPerUnit,
       );
-
+/// zu OOP 2: die factory konstruktoren für die verschiedenen maßeinheiten die den wert in mm umrechnen und an den privaten konstruktor weitergeben
   factory Triangle.inMillimeters({
     required double width,
     required double height,
@@ -40,7 +47,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.mm,
       );
-
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
   factory Triangle.inCentimeters({
     required double width,
     required double height,
@@ -50,7 +57,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.cm,
       );
-
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
   factory Triangle.inDecimeters({
     required double width,
     required double height,
@@ -60,7 +67,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.dm,
       );
-
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
   factory Triangle.inMeters({
     required double width,
     required double height,
@@ -70,7 +77,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.m,
       );
-
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
   factory Triangle.inInches({
     required double width,
     required double height,
@@ -80,7 +87,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.inch,
       );
-
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
   factory Triangle.inFeet({
     required double width,
     required double height,
@@ -91,7 +98,8 @@ class Triangle {
         system: MeasurementSystem.feet,
       );
 
-  // OOP 3: Getter für die gekapselten Werte.
+  /// OOP 3: Getter für die gekapselten Werte.
+  ///  getter geben die breite und höhe in mm zurück.
   double get widthInMillimeters => _widthInMillimeters;
   double get heightInMillimeters => _heightInMillimeters;
 
@@ -152,19 +160,19 @@ class Triangle {
   set heightInInches(double value) =>
       _heightInMillimeters = value * MeasurementSystem.inch.millimetersPerUnit;
 
-  // OOP 5:
-  // Gibt die Höhe im gewünschten Maßsystem zurück.
+  /// OOP 5:
+  /// Gibt die Höhe in mm zurück.
   double getHeight(MeasurementSystem ms) {
     return _heightInMillimeters / ms.millimetersPerUnit;
   }
 
-  // OOP 5:
-  // Setzt die Höhe. Der übergebene Wert wird in Millimeter umgerechnet.
+  /// OOP 5:
+  /// setter höhe und in mm umrechnen
   void setHeight(MeasurementSystem ms, int value) {
     _heightInMillimeters = value * ms.millimetersPerUnit;
   }
 
-  // Interne Hilfsmethode für die Flächen-Getter.
+  /// inerne methode für die flächen-Getter.
   double _areaIn(MeasurementSystem ms) {
     final width = _widthInMillimeters / ms.millimetersPerUnit;
     final height = _heightInMillimeters / ms.millimetersPerUnit;
@@ -172,7 +180,7 @@ class Triangle {
     return width * height;
   }
 
-  // OOP 5: Fläche in Quadrat-Maßeinheiten.
+  /// OOP 5: Fläche in quadrat maßeinheiten
   double get areaInSquareMillimeters => _areaIn(MeasurementSystem.mm);
   double get areaInSquareCentimeters => _areaIn(MeasurementSystem.cm);
   double get areaInSquareDecimeters => _areaIn(MeasurementSystem.dm);
