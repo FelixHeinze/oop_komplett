@@ -1,32 +1,40 @@
 import 'package:flutter/material.dart';
 
 // OOP 6 – Vererbung
-
+///klasse Animal ist abstrakt 
 abstract class Animal {
+  ///name ist abstrakt, muss in den konkreten Klassen implementiert werden
   String get name;
-
+  ///move ist abstrakt, muss in den konkreten Klassen implementiert werden
   void move();
-
+/// makeSound ist abstrakt, muss in den konkreten Klassen implementiert werden
   void makeSound();
 }
 
 // Fähigkeit: ein lebewesen kann fliegen.
+///klasse CanFly ist abstrakt, muss in den konkreten Klassen implementiert werden
 abstract class CanFly {
+  ///fly ist abstrakt, muss in den konkreten Klassen implementiert werden
   void fly();
 }
 
 // Fähigkeit: ein lebewesen kann laufen.
+///klasse CanWalk ist abstrakt, muss in den konkreten Klassen implementiert werden
 abstract class CanWalk {
+  ///walk ist abstrakt, muss in den konkreten Klassen implementiert werden
   void walk();
 }
 
 // Fähigkeit: ein lebewesen kann unter wasser atmen.
+///klasse CanBreatheUnderWater ist abstrakt, muss in den konkreten Klassen implementiert werden
 abstract class CanBreatheUnderWater {
+  ///breatheUnderWater ist abstrakt, muss in den konkreten Klassen implementiert werden
   void breatheUnderWater();
 }
 
 // erste ebene unter anmimal
 // alle fische können schwimmen + unter wasser atmen
+///klasse Fish ist abstrakt, leitet sich von Animal ab und implementiert CanBreatheUnderWater
 abstract class Fish extends Animal implements CanBreatheUnderWater {
   //abstrakte klasse fisch leitet sich von animal ab und implementiert canbreatheunderwater
   @override
@@ -46,6 +54,7 @@ abstract class Fish extends Animal implements CanBreatheUnderWater {
 }
 
 // konkrete tierklasse.
+///klasse Goldfish leitet sich von Fish ab
 class Goldfish extends Fish {
   @override
   String get name => 'Goldfisch';
@@ -58,6 +67,7 @@ class Goldfish extends Fish {
 
 
 // animal -> bird -> eagle
+///klasse Bird ist abstrakt, leitet sich von Animal ab und implementiert CanWalk
 abstract class Bird extends Animal implements CanWalk {
   @override
   void walk() {
@@ -74,7 +84,7 @@ abstract class Bird extends Animal implements CanWalk {
     print('$name macht ein Vogelgeräusch.');
   }
 }
-
+///konkrete tierklasse eagle leitet sich von Bird ab und implementiert CanFly
 class Eagle extends Bird implements CanFly {
   @override
   String get name => 'Adler';
@@ -97,6 +107,7 @@ class Eagle extends Bird implements CanFly {
 
 // vogel der nicht fliegt pinguin
 // damit wird sichtbar, warum globalFly prüfen muss.
+///konkrete tierklasse penguin leitet sich von Bird ab
 class Penguin extends Bird {
   @override
   String get name => 'Pinguin';
@@ -109,15 +120,17 @@ class Penguin extends Bird {
 
 // Globaler Mechanismus aus der Aufgabenstellung.
 // Es wird bewusst Object? verwendet.
+///globalfly prüft, ob das übergebene Objekt die Fähigkeit CanFly besitzt und ruft dann fly() auf
 void globalFly(Object? object) {
   if (object is CanFly) {
     object.fly();
   } else {
-    print('Dieses Objekt kann nicht fliegen.');
+    print('Dieses Objekt kann nicht fliegen.'); // konsolenausgabe für testzwecke
   }
 }
-
+/// Oop6Page ist eine stateless widget klasse, die die tierhierarchie und ihre fähigkeiten anzeigt
 class Oop6Page extends StatelessWidget {
+  //// Konstruktor für Oop6Page
   const Oop6Page({super.key});
 
   @override

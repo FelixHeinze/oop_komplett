@@ -9,8 +9,9 @@ import 'pages/oop6.dart';
 //angedacht ist alle oop projekte in einer flutter app anzulegen und diese auf verschiedene seiten 
 // darzustellen
 void main() => runApp(const OopApp());
-
+/// OOP App ist eine Flutter-Anwendung, die verschiedene OOP-Konzepte demonstriert
 class OopApp extends StatelessWidget {
+  /// Konstruktor für OopApp
   const OopApp({super.key});
 
   @override
@@ -28,14 +29,16 @@ class OopApp extends StatelessWidget {
     );
   }
 }
-
+/// OopNavigation ist eine StatefulWidget-Klasse, die die Navigation zwischen den OOP-Seiten ermöglicht
+/// spätere erweiterung als menü mit allen oop seiten, da es viele werden
 class OopNavigation extends StatefulWidget {
+  /// Konstruktor für OopNavigation
   const OopNavigation({super.key});
 
   @override
   State<OopNavigation> createState() => _OopNavigationState();
 }
-
+/// _OopNavigationState ist die State-Klasse für OopNavigation, die die aktuelle Seite und den Index der Navigation verwaltet
 class _OopNavigationState extends State<OopNavigation> {
   int _currentIndex = 0;
 

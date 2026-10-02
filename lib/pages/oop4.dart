@@ -1,16 +1,21 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../models/teilnehmer.dart';
-
+///klasse Zutrittsberechtigung erzeugt einen zufälligen code für jeden teilnehmer
 class Zutrittsberechtigung {
+  /// code ist eine zufällige 10-stellige zahl, die jedem Teilnehmer zugeordnet wird
   final int code;
+  /// Konstruktor für die Klasse Zutrittsberechtigung, der einen zufälligen "code" generiert
   Zutrittsberechtigung() : code = 1000000000 + Random().nextInt(900000000);
 }
 // automatische zufallszahl erzeugen für code 
+/// oop4 teilnehmer erweitert klasse teilnehmer um zutritsberechtigung erbt aber alle andere vorher
 class Oop4Teilnehmer extends Teilnehmer {
+  /// Zutrittsberechtigung ist eine Instanz der Klasse Zutrittsberechtigung, die jedem Teilnehmer zugeordnet wird
   final Zutrittsberechtigung zutrittsberechtigung;
 // oop4 teilnehmer erweitert klasse teilnehmer um zutritsberechtigung erbt aber alle andere vorher 
 //definierten sachen ( name usw )
+/// Konstruktor für die Klasse Oop4Teilnehmer, der die erforderlichen Eigenschaften an den Konstruktor der Basisklasse Teilnehmer weitergibt und eine neue Zutrittsberechtigung erstellt
   Oop4Teilnehmer({
     required super.nachname,
     required super.vorname,
@@ -21,32 +26,39 @@ class Oop4Teilnehmer extends Teilnehmer {
 }
 /* ein kurs hat einen namen und eine liste von teilnehmern mit add teilnehmer kann man einen
 teilnehmer zur liste hinzufügen*/
+/// klasse kurs hat name und liste von teilnehmern
 class Kurs {
+  /// name ist der Name des Kurses
   final String name;
+  /// teilnehmer ist eine Liste von Oop4Teilnehmern, die dem Kurs zugeordnet sind
   final List<Oop4Teilnehmer> teilnehmer;
-
+/// Konstruktor für die Klasse Kurs, der den Namen des Kurses und optional eine Liste von Teilnehmern entgegennimmtw enn keine liste von Teilnehmern angegeben wird, wird eine leere Liste erstellt.
   Kurs({required this.name, List<Oop4Teilnehmer>? teilnehmer})
       : teilnehmer = teilnehmer ?? [];
-
+/// Methode zum Hinzufügen eines Teilnehmers zur Liste der Teilnehmer des Kurses
   void addTeilnehmer(Oop4Teilnehmer person) => teilnehmer.add(person);
 }
-
+/// klasse cdemy hat name und liste von kursen, die kurse wiederum haben eine liste von teilnehmern
 class Cdemy {
+  /// name ist der Name der cdemy
   final String name;
+  /// kurse ist eine Liste von Kursen, die der cdemy zugeordnet sind
   final List<Kurs> kurse;
-
+/// Konstruktor für die Klasse Cdemy, der den Namen der cdemy und optional eine Liste von Kursen entgegennimmt. Wenn keine Liste von Kursen angegeben wird, wird eine leere Liste erstellt.
   Cdemy({this.name = 'cdemy', List<Kurs>? kurse})
       : kurse = kurse ?? [];
-
+/// Methode zum Hinzufügen eines Kurses zur Liste der Kurse der cdemy
   void addKurs(Kurs kurs) => kurse.add(kurs);
 }
 /* cdemy entählt kurse : besitzt eine liste von kursen, ein kurs wiederum eine liste von 
 teilnehmern --> verschahtelte objektbeziehung entsteht */
-
+/// Oop4Page ist eine stateful widget klasse, die die cdemy, kurse und teilnehmer anzeigt
 class Oop4Page extends StatefulWidget {
+  /// Konstruktor für Oop4Page
   const Oop4Page({super.key});
 
   @override
+  ///createState-Methode erstellt den Zustand für Oop4Page
   State<Oop4Page> createState() => _Oop4PageState();
 }
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../models/triangle.dart';
-
+/// oop3page ist eine stateful widget klasse, die die triangle klasse und ihre getter und setter anzeigt
 class Oop3Page extends StatefulWidget {
+  /// Konstruktor für Oop3Page
   const Oop3Page({super.key});
 
   @override

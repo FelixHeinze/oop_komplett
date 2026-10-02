@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../models/triangle.dart';
-
+/// oop2page ist eine stateless widget klasse, die die triangle klasse und ihre benannten konstruktoren anzeigt
 class Oop2Page extends StatelessWidget {
+  /// Konstruktor für Oop2Page
   const Oop2Page({super.key});
 
   @override

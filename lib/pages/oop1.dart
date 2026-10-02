@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/teilnehmer.dart';
 ///oop1.dart seite die teilnehmer klasse und die objekterstellung zeigt
 class Oop1Page extends StatelessWidget {
+  /// Konstruktor für Oop1Page
   const Oop1Page({super.key}); // stateless widget da keine zustandsänderung nötig ist, nur anzeigen der teilnehmerobjekte
 /// klasse bauen und objekte erzeugen für oop1 
   @override

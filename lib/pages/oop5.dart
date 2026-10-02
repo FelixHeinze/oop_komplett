@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../models/triangle.dart';
-
+/// oop5page ist eine stateful widget klasse, die die triangle klasse und ihre methoden anzeigt
 class Oop5Page extends StatefulWidget {
+  /// Konstruktor für Oop5Page
   const Oop5Page({super.key});
 
   @override
   State<Oop5Page> createState() => _Oop5PageState();
 }
-
+///_Oop5PageState ist die state klasse für Oop5Page, die die triangle klasse und ihre methoden anzeigt
 class _Oop5PageState extends State<Oop5Page> {
+  /// Instanz der Triangle-Klasse, die in Zentimetern initialisiert wird
   final Triangle triangle = Triangle.inCentimeters(
     width: 10,
     height: 5,

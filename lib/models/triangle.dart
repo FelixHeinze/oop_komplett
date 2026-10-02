@@ -27,7 +27,7 @@ class Triangle {
     required double height,
   })  : _widthInMillimeters = width,
         _heightInMillimeters = height;
-/// zu OOP 2 der konstruktor für die klasse Triangle der die Breite und Höhe in einer bestimmten maßeinheit entgegennimmt.
+/// zu OOP 2 der konstruktor für die klasse Triangle der die Breite und Höhe in einer bestimmten maßeinheit entgegennimmtvvvvv 
   factory Triangle({
     required double width,
     required double height,
@@ -47,7 +47,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.mm,
       );
-/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben
   factory Triangle.inCentimeters({
     required double width,
     required double height,
@@ -57,7 +57,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.cm,
       );
-/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben
   factory Triangle.inDecimeters({
     required double width,
     required double height,
@@ -67,7 +67,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.dm,
       );
-/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben
   factory Triangle.inMeters({
     required double width,
     required double height,
@@ -77,7 +77,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.m,
       );
-/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben
   factory Triangle.inInches({
     required double width,
     required double height,
@@ -87,7 +87,7 @@ class Triangle {
         height: height,
         system: MeasurementSystem.inch,
       );
-/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben.
+/// OOP 2factory-Konstruktoren für die verschiedenen maßeinheiten die die Werte in mm umrechnen und an den privaten Konstruktor weitergeben
   factory Triangle.inFeet({
     required double width,
     required double height,
@@ -99,7 +99,7 @@ class Triangle {
       );
 
   /// OOP 3: Getter für die gekapselten Werte.
-  ///  getter geben die breite und höhe in mm zurück.
+  ///  getter geben die breite und höhe in mm zurück
   double get widthInMillimeters => _widthInMillimeters;
   double get heightInMillimeters => _heightInMillimeters;
 
@@ -132,7 +132,7 @@ class Triangle {
 
   double get heightInDecimeters =>
       _heightInMillimeters / MeasurementSystem.dm.millimetersPerUnit;
-
+/// OOP 3 setter für die gekapselten Werte
   set widthInMillimeters(double value) => _widthInMillimeters = value;
   set heightInMillimeters(double value) => _heightInMillimeters = value;
 
