@@ -6,6 +6,7 @@ import 'pages/oop3.dart';
 import 'pages/oop4.dart';
 import 'pages/oop5.dart';
 import 'pages/oop6.dart';
+import 'pages/oop7.dart';
 //angedacht ist alle oop projekte in einer flutter app anzulegen und diese auf verschiedene seiten 
 // darzustellen
 void main() => runApp(const OopApp());
@@ -49,6 +50,7 @@ class _OopNavigationState extends State<OopNavigation> {
     Oop4Page(),
     Oop5Page(),
     Oop6Page(),
+    Oop7Page(),
   ];
   // nächste asulagerung in extra menü da viele oop seiten anfallen werden 
 
@@ -59,6 +61,7 @@ class _OopNavigationState extends State<OopNavigation> {
     'OOP 4 – Komposition & Aggregation',
     'OOP 5 – Methoden',
     'OOP 6 – Vererbung',
+    'OOP 7 – Operatoren',
   ];
 
   @override
@@ -103,6 +106,10 @@ class _OopNavigationState extends State<OopNavigation> {
           NavigationDestination(
             icon: Icon(Icons.looks_6),
             label: 'OOP 6',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.seven_k),
+            label: 'OOP 7',
           ),
         ],
       ),
