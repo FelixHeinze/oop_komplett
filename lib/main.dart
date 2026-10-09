@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'pages/oop1.dart';
 import 'pages/oop2.dart';
@@ -7,9 +8,13 @@ import 'pages/oop4.dart';
 import 'pages/oop5.dart';
 import 'pages/oop6.dart';
 import 'pages/oop7.dart';
+import 'pages/ein_problem_vier_loesungen.dart';
 //angedacht ist alle oop projekte in einer flutter app anzulegen und diese auf verschiedene seiten 
 // darzustellen
-void main() => runApp(const OopApp());
+void main() => runApp(
+      // ProviderScope stellt Riverpod-Provider für den gesamten App-Baum bereit.
+      const ProviderScope(child: OopApp()),
+    );
 /// OOP App ist eine Flutter-Anwendung, die verschiedene OOP-Konzepte demonstriert
 class OopApp extends StatelessWidget {
   /// Konstruktor für OopApp
@@ -51,6 +56,7 @@ class _OopNavigationState extends State<OopNavigation> {
     Oop5Page(),
     Oop6Page(),
     Oop7Page(),
+    EinProblemVierLoesungenPage(),
   ];
   // nächste asulagerung in extra menü da viele oop seiten anfallen werden 
 
@@ -61,7 +67,8 @@ class _OopNavigationState extends State<OopNavigation> {
     'OOP 4 – Komposition & Aggregation',
     'OOP 5 – Methoden',
     'OOP 6 – Vererbung',
-    'OOP 7 – Operatoren',
+    'OOP 7 – Operatoren / CoinStack',
+    'State Management – Riverpod',
   ];
 
   @override
@@ -110,6 +117,10 @@ class _OopNavigationState extends State<OopNavigation> {
           NavigationDestination(
             icon: Icon(Icons.seven_k),
             label: 'OOP 7',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.account_tree),
+            label: 'Riverpod',
           ),
         ],
       ),
