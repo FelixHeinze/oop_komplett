@@ -60,19 +60,19 @@ class CounterNotifier extends Notifier<CounterState> {
   void increment(int quadrant) => _change(quadrant, 1);
   void decrement(int quadrant) => _change(quadrant, -1);
 
-  void _change(int quadrant, int delta) {
+  void _change(int quadrant, int inOrDec) {
     switch (quadrant) {
       case 0:
-        state = state.copyWith(topLeft: state.topLeft + delta);
+        state = state.copyWith(topLeft: state.topLeft + inOrDec);
         break;
       case 1:
-        state = state.copyWith(topRight: state.topRight + delta);
+        state = state.copyWith(topRight: state.topRight + inOrDec);
         break;
       case 2:
-        state = state.copyWith(bottomLeft: state.bottomLeft + delta);
+        state = state.copyWith(bottomLeft: state.bottomLeft + inOrDec);
         break;
       case 3:
-        state = state.copyWith(bottomRight: state.bottomRight + delta);
+        state = state.copyWith(bottomRight: state.bottomRight + inOrDec);
         break;
       default:
         throw RangeError.index(quadrant, [0, 1, 2, 3], 'quadrant');
