@@ -1,0 +1,1 @@
+//unveränderlicher Gesamtzustand samt Json Konvertierung
