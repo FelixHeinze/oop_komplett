@@ -15,10 +15,22 @@ class TodoToJsonPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final todoAppState = ref.watch(todoAppStateProvider);
     final todos = todoAppState.todos;
-
+// vorüberlegung: die todos werden aus dem provider geladen und beim hinzufügen eines neuen todos wird der provider aktualisiert
+// todos sollen bearbeitbar werden, dazu muss die todo klasse angepasst werden, sodass sie eine methode zum bearbeiten des textes enthält
+// die methode zum bearbeiten des textes soll den text der todo instanz ändern und den provider aktualisieren
     return Scaffold(
       appBar: AppBar(
         title: const Text('Todos'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.save),
+            onPressed: () {
+              // hier könnte man die todos in eine json datei speichern
+              final json = todos.map((todo) => todo.toJson()).toList();
+              print(json);
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: todos.length,

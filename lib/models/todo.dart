@@ -33,4 +33,8 @@ class Todo {
   void toggleDone() {
     isDone = !isDone;
   }
+  // Methode zum Bearbeiten des Textes
+  void editText(String newText) {
+    text = newText;
+  }
 }
