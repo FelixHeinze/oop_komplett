@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:io'; 
 
+import 'package:oop_komplett/models/todo.dart';
 import 'package:path_provider/path_provider.dart';
 
 class TodoStorageService {

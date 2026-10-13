@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:oop_komplett/pages/todo_to_json_page.dart' as todo_to_json_page;
 
 import 'pages/oop1.dart';
 import 'pages/oop2.dart';
@@ -9,6 +10,7 @@ import 'pages/oop5.dart';
 import 'pages/oop6.dart';
 import 'pages/oop7.dart';
 import 'pages/ein_problem_vier_loesungen.dart';
+import 'pages/todo_to_json_page.dart';
 //angedacht ist alle oop projekte in einer flutter app anzulegen und diese auf verschiedene seiten 
 // darzustellen
 void main() => runApp(
@@ -48,15 +50,16 @@ class OopNavigation extends StatefulWidget {
 class _OopNavigationState extends State<OopNavigation> {
   int _currentIndex = 0;
 
-  final _pages = const [
-    Oop1Page(),
-    Oop2Page(),
-    Oop3Page(),
-    Oop4Page(),
-    Oop5Page(),
-    Oop6Page(),
-    Oop7Page(),
-    EinProblemVierLoesungenPage(),
+  final _pages = [
+    const Oop1Page(),
+    const Oop2Page(),
+    const Oop3Page(),
+    const Oop4Page(),
+    const Oop5Page(),
+    const Oop6Page(),
+    const Oop7Page(),
+    const EinProblemVierLoesungenPage(),
+    const todo_to_json_page.TodoToJsonPage(),
   ];
   // nächste asulagerung in extra menü da viele oop seiten anfallen werden 
 
@@ -69,6 +72,7 @@ class _OopNavigationState extends State<OopNavigation> {
     'OOP 6 – Vererbung',
     'OOP 7 – Operatoren / CoinStack',
     'State Management – Riverpod',
+    'ToDo List – JSON & Riverpod',
   ];
 
   @override
@@ -121,6 +125,10 @@ class _OopNavigationState extends State<OopNavigation> {
           NavigationDestination(
             icon: Icon(Icons.account_tree),
             label: 'Riverpod',
+          ),
+            NavigationDestination(
+            icon: Icon(Icons.checklist),
+            label: 'TodList',
           ),
         ],
       ),

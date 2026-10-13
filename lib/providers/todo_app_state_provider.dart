@@ -1,7 +1,12 @@
 //Riverpod Notifier und Änderungsmethoden
 
+import 'package:oop_komplett/models/todo.dart';
+import 'package:oop_komplett/models/todo_app_state.dart';
 import 'package:riverpod/riverpod.dart';
 
+final todoAppStateProvider = NotifierProvider<TodoAppStateProvider, TodoAppState>(
+  () => TodoAppStateProvider(),
+);
 class TodoAppStateProvider extends Notifier<TodoAppState> {
   @override
   TodoAppState build() {

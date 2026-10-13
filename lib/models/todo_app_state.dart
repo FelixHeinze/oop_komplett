@@ -1,5 +1,7 @@
 //unveränderlicher Gesamtzustand samt Json Konvertierung
 
+import 'package:oop_komplett/models/todo.dart';
+
 class TodoAppState {
   final List<Todo> todos;
 
