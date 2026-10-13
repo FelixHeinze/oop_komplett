@@ -26,6 +26,7 @@ class TodoToJsonPage extends ConsumerWidget {
             icon: const Icon(Icons.save),
             onPressed: () {
               // hier könnte man die todos in eine json datei speichern
+              //testweise konsolenausgabe der datei 
               final json = todos.map((todo) => todo.toJson()).toList();
               print(json);
             },
