@@ -22,14 +22,30 @@ class TodoToJsonPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Todos'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: () {
-              // hier könnte man die todos in eine json datei speichern
-              //testweise konsolenausgabe der datei 
-              final json = todos.map((todo) => todo.toJson()).toList();
-              print(json);
-            },
+          // button um angeklickte todos zu löschen
+          Row(
+            children: [
+              IconButton(
+                 // button um angeklickte todos zu löschen
+                icon: const Icon(Icons.delete),
+                onPressed: () {
+                  // alle erledigten todos löschen
+                  final completedTodos = todos.where((todo) => todo.isDone).toList();
+                  for (var todo in completedTodos) {
+                    ref.read(todoAppStateProvider.notifier).removeTodo(todo.id);
+                  }
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.save),
+                onPressed: () {
+                  // hier könnte man die todos in eine json datei speichern
+                  //testweise konsolenausgabe der datei 
+                  final json = todos.map((todo) => todo.toJson()).toList();
+                  print(json);
+                },
+              ),
+            ],
           ),
         ],
       ),
@@ -56,11 +72,46 @@ class TodoToJsonPage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          final newTodo = Todo(
-            id: DateTime.now().millisecondsSinceEpoch,
-            text: 'Neue Aufgabe ${todos.length + 1}',
+          // neues todo anlegen id als timestamp 
+          // eingabefenster für text öffnet sich 
+          var text = ''; 
+          // eingabefeld für text
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text('Neue Aufgabe'),
+                content: TextField(
+                  onChanged: (value) {
+                    // text wird in variable gespeichert
+                    text = value;
+                  },
+                  decoration: const InputDecoration(hintText: 'Aufgabe eingeben'),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Abbrechen'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      if (text.isNotEmpty) {
+                        final newTodo = Todo(
+                          id: DateTime.now().millisecondsSinceEpoch,
+                          text: text,
+                        );
+                        ref.read(todoAppStateProvider.notifier).addTodo(newTodo);
+                      }
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Hinzufügen'),
+                  ),
+                ],
+              );
+            },
           );
-          ref.read(todoAppStateProvider.notifier).addTodo(newTodo);
         },
         child: const Icon(Icons.add),
       ),
