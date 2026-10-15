@@ -1,40 +1,39 @@
-//einzelnes todo mit id text und erledigt status
-// json methoden mit code generation json_serializable
-
+//Annotationen helfen Json Konvertierungscode zu generieren
 import 'package:json_annotation/json_annotation.dart';
-
+//Buildrunner generiert code dieser Datei
 part 'todo.g.dart';
-
+//Datenmodell für einzelne Aufgabe
 @JsonSerializable()
 class Todo {
-  // mit @JsonKey kann man default values setzen, falls die json Datei keine Werte enthält
-  @JsonKey(defaultValue: 0)
-  int id;
-  // @JsonKey(text: 'inhalt')
-  // umbenennung des keys falls in datei anderer name bspw. 
-  String text;
-  bool isDone;
+  //Attribute
+  final String id;
+  final String text;
+  final bool isDone;
 
-  Todo({
+  const Todo({
     required this.id,
     required this.text,
     this.isDone = false,
+    //neue aufgaben sind nicht erledigt 
   });
-// JsonSerializable benötigt eine leere Konstruktorfunktion, um die Instanz zu erstellen
-// https://pub.dev/packages/json_serializable anleitung
-// unter pub.dev auch mit schritt für schritt anleitung für code generation
-  factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
-
+//ERstellt Kopie mit ausgewählten Änderungen
+//Nicht angegeben WErte bleiben unverändert
+//Das Modell wird nicht nachträglich verändert (immutable)
+  Todo copyWith({
+    String? text,
+    bool? isDone,
+  }) {
+    return Todo(
+      id: id, // id bleibt gleich 
+      text: text ?? this.text,
+      isDone: isDone ?? this.isDone,
+    );
+  }
+//Erstellt TodoObjekt aus einer Jsno Map
+//Feldzuordnung steht im generierten todo.g.dart
+  factory Todo.fromJson(Map<String, dynamic> json) =>
+      _$TodoFromJson(json);
+//Wandelt dieses TodoObjekt in Json kompatible Map um
+//code ebenfalls geneirert, lohnt bei großen klassen/aufgaben 
   Map<String, dynamic> toJson() => _$TodoToJson(this);
-// datei todo.gart wird automatisch generiert, wenn man im terminal folgenden befehl ausführt:
-// flutter pub run build_runner build --delete-conflicting-outputs
-// dort werden  to und from json methoden 
-  // Methode zum Umschalten des Erledigt-Status
-  void toggleDone() {
-    isDone = !isDone;
-  }
-  // Methode zum Bearbeiten des Textes
-  void editText(String newText) {
-    text = newText;
-  }
 }
