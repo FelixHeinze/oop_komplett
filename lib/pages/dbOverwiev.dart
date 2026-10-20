@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> fetchData() async {
     try {
       final response = await http.get(
-        Uri.parse('http://10.0.2.2/api.php'),
+        Uri.parse('http://127.0.0.1/api.php'),
       );
 
       if (response.statusCode == 200) {
@@ -81,9 +81,10 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index) {
                         return ListTile(
                           title: Text(
-                            data[index]['title']?.toString() ??
+                            data[index]['K_Nr']?.toString() ??
                                 'Kein Titel',
                           ),
+                          //listview für alle daten
                         );
                       },
                     ),
