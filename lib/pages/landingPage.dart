@@ -10,6 +10,7 @@ import 'oop5.dart';
 import 'oop6.dart';
 import 'oop7.dart';
 import 'ein_problem_vier_loesungen.dart';
+import 'dbOverwiev.dart';
 
 
 
@@ -80,6 +81,12 @@ class LandingPage extends ConsumerWidget {
         subtitle: 'Aufgabenliste mit JSON-Persistenz',
         icon: Icons.checklist,
         page: const TodoToJsonPage(),
+      ),
+      (
+        title: 'Datenbank1',
+        subtitle: 'Lösung mit Xampp',
+        icon: Icons.date_range,
+        page: dbOverwiev(), // test für xampp 
       ),
     ];
 //beobachtet den App zustand damit Dark/light mode umgeschaltet werden kann

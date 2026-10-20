@@ -1,33 +1,68 @@
 
 <?php
-//api php datei liegt auf xampp in htdocs 
-header('Content-Type: application/json');
-//Flutter app -->  PHP API <-- DB
-$servername = "10.0.2.2"; // Adresse von server
-//neuer nutzer angelegt für ke
-$username = "test";
-$password = "Test123";
-$dbname = "i13";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// JSON-Antwort für Flutter
+header('Content-Type: application/json; charset=utf-8');
 
-// Check connection
+// Datenbankverbindung
+$servername = "127.0.0.1";
+$username   = "test";
+$password   = "Test123";
+$dbname     = "i13";
+
+// Verbindung herstellen
+$conn = new mysqli(
+    $servername,
+    $username,
+    $password,
+    $dbname
+);
+
+// Verbindung prüfen
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    http_response_code(500);
+
+    echo json_encode([
+        "error" => "Datenbankverbindung fehlgeschlagen"
+    ]);
+
+    exit;
 }
 
+// Zeichensatz festlegen
+$conn->set_charset("utf8mb4");
+
+// Daten aus der Tabelle kunde abrufen
 $sql = "SELECT * FROM kunde";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    $rows = array();
-    while($r = mysqli_fetch_assoc($result)) {
-        $rows[] = $r;
-    }
-    print json_encode($rows);
-} else {
-    echo "0 results";
+// Abfrage prüfen
+if ($result === false) {
+    http_response_code(500);
+
+    echo json_encode([
+        "error" => "Datenbankabfrage fehlgeschlagen"
+    ]);
+
+    $conn->close();
+    exit;
 }
+
+// Ergebnisse als Array speichern
+$rows = [];
+
+while ($row = $result->fetch_assoc()) {
+    $rows[] = $row;
+}
+
+// JSON an Flutter zurückgeben
+echo json_encode(
+    $rows,
+    JSON_UNESCAPED_UNICODE
+);
+
+// Verbindung schließen
+$result->free();
 $conn->close();
+
 ?>
