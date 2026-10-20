@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
 
       if (response.statusCode == 200) {
         final decodedData = json.decode(response.body);
-
+    
         if (decodedData is List) {
           setState(() {
             data = decodedData;
@@ -61,6 +61,7 @@ class _HomePageState extends State<HomePage> {
       });
     }
   }
+// daten aus json anzeigen
 
   @override
   Widget build(BuildContext context) {
