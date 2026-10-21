@@ -1,16 +1,26 @@
+// Diese Klasse bündelt alle HTTP-Anfragen an den XAMPP-Webserver.
+// Die Widgets müssen dadurch weder URLs zusammenbauen noch JSON direkt lesen.
+// Datenfluss:
+// Flutter-Seite -> ShopApi -> HTTP/JSON -> api.php -> MariaDB
+
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 /// Zentraler API-Zugriff für den Shop.
-
 class ShopApi {
   ShopApi._();
   static final ShopApi instance = ShopApi._();
 
+  // Zentraler Endpunkt: Alle Aktionen werden als ?action=... an api.php gesendet.
   static const String baseUrl = 'http://localhost/shop_api/api.php';
 
   /// Für diesen Starter bleibt der Token bis zum Beenden der App im Speicher.
+  /// Für dauerhafte Anmeldung kann später flutter_secure_storage ergänzt werden.
+  // Nach erfolgreichem Login kommt dieses Token vom Server zurück.
+  // Es wird als Bearer-Token an geschützte API-Aufrufe angehängt.
   String? token;
+  // Profilkopie für UI-Entscheidungen; der Server bleibt die vertrauenswürdige Quelle.
   Map<String, dynamic>? currentUser;
 
   Map<String, String> get _headers => {
@@ -18,6 +28,8 @@ class ShopApi {
         if (token != null) 'Authorization': 'Bearer $token',
       };
 
+  // Gemeinsame Methode für HTTP-Anfragen. 'action' wählt den PHP-Endpunkt aus.
+  // body enthält die JSON-Daten, query optionale URL-Parameter.
   Future<dynamic> request(
     String action, {
     Map<String, dynamic>? body,
@@ -27,10 +39,14 @@ class ShopApi {
       'action': action,
       ...?query,
     });
+    // JSON wird im Request-Body gesendet. timeout verhindert endloses Warten,
+    // falls Apache nicht läuft oder die API nicht antwortet.
     final response = await http
         .post(uri, headers: _headers, body: jsonEncode(body ?? <String, dynamic>{}))
         .timeout(const Duration(seconds: 15));
 
+    // Die API sollte immer JSON liefern. Ungültiges HTML 
+    // wird hier in eine verständliche Fehlermeldung umgewandelt.
     dynamic decoded;
     try {
       decoded = jsonDecode(response.body);
@@ -51,11 +67,13 @@ class ShopApi {
     return decoded;
   }
 
+  // Öffentlicher Endpunkt: Artikelliste laden. Jedes Produkt kommt als Map an.
   Future<List<Map<String, dynamic>>> products() async {
     final result = await request('products');
     return List<Map<String, dynamic>>.from(result as List);
   }
 
+  // Registrierungsdaten an PHP senden. Die Datenbank speichert nur den Hash.
   Future<void> register({
     required String name,
     required String email,
@@ -68,6 +86,8 @@ class ShopApi {
     });
   }
 
+  // Login: Die API gibt Token und Profil zurück. Das Token wird für spätere
+  // geschützte Aktionen verwendet.
   Future<void> login({
     required String email,
     required String password,
@@ -80,6 +100,7 @@ class ShopApi {
     currentUser = Map<String, dynamic>.from(result['user'] as Map);
   }
 
+  // Abmelden: Server-Session widerrufen und lokale Token-Daten entfernen.
   Future<void> logout() async {
     if (token != null) {
       try {
@@ -96,6 +117,7 @@ class ShopApi {
   Future<Map<String, dynamic>> profile() async =>
       Map<String, dynamic>.from(await request('profile') as Map);
 
+  // Die API liefert nur Positionen des aktuell angemeldeten Nutzers zurück.
   Future<List<Map<String, dynamic>>> cart() async =>
       List<Map<String, dynamic>>.from(await request('cart') as List);
 
@@ -117,6 +139,7 @@ class ShopApi {
     await request('cart_remove', body: {'item_id': itemId});
   }
 
+  // Checkout erzeugt serverseitig eine Bestellung und leert den Warenkorb.
   Future<Map<String, dynamic>> checkout() async =>
       Map<String, dynamic>.from(await request('checkout') as Map);
 
