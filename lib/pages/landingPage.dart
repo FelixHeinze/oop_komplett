@@ -86,7 +86,7 @@ class LandingPage extends ConsumerWidget {
         title: 'Datenbank1',
         subtitle: 'Lösung mit Xampp',
         icon: Icons.date_range,
-        page: dbOverwiev(), // test für xampp 
+        page: DbOverwiev(), // test für xampp 
       ),
     ];
 //beobachtet den App zustand damit Dark/light mode umgeschaltet werden kann

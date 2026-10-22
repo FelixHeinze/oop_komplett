@@ -1,18 +1,14 @@
-// Diese Klasse bündelt alle HTTP-Anfragen an den XAMPP-Webserver.
-// Die Widgets müssen dadurch weder URLs zusammenbauen noch JSON direkt lesen.
+
 // Datenfluss:
 // Flutter-Seite -> ShopApi -> HTTP/JSON -> api.php -> MariaDB
-
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-/// Zentraler API-Zugriff für den Shop.
 class ShopApi {
   ShopApi._();
   static final ShopApi instance = ShopApi._();
 
-  // Zentraler Endpunkt: Alle Aktionen werden als ?action=... an api.php gesendet.
   static const String baseUrl = 'http://localhost/shop_api/api.php';
 
   /// Für diesen Starter bleibt der Token bis zum Beenden der App im Speicher.
@@ -45,7 +41,7 @@ class ShopApi {
         .post(uri, headers: _headers, body: jsonEncode(body ?? <String, dynamic>{}))
         .timeout(const Duration(seconds: 15));
 
-    // Die API sollte immer JSON liefern. Ungültiges HTML 
+    // Die API sollte immer JSON liefern. Ungültiges HTML (z.B. PHP-Fehlerseite)
     // wird hier in eine verständliche Fehlermeldung umgewandelt.
     dynamic decoded;
     try {
@@ -145,4 +141,21 @@ class ShopApi {
 
   Future<List<Map<String, dynamic>>> orders() async =>
       List<Map<String, dynamic>>.from(await request('orders') as List);
+
+  // Öffentliche, schreibgeschützte Ansichten der importierten Datenbanktabellen.
+  // Die API verwendet dafür feste Aktionen und keine frei übergebenen SQL-Namen.
+  Future<List<Map<String, dynamic>>> databaseTable(String action) async {
+    const allowedActions = {
+      'products',
+      'db_kunden',
+      'db_hersteller',
+      'db_bestellungen',
+      'db_bestellpositionen',
+    };
+    if (!allowedActions.contains(action)) {
+      throw ArgumentError('Unbekannte Datenbankansicht: $action');
+    }
+    final result = await request(action);
+    return List<Map<String, dynamic>>.from(result as List);
+  }
 }
