@@ -4,7 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'pages/landingPage.dart';
 import 'providers/todo_app_state_provider.dart';
 
+/*The WidgetsFlutterBinding class is a fundamental part of any Flutter application. It 
+ensures that the Flutter engine is correctly initialized, manages the widget tree, and
+ interacts with native code for improved performance and functionality.
+ Understanding its role and leveraging its capabilities can help you create 
+ more efficient and performant Flutter apps.*/
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     // ProviderScope ist notwendig, um Riverpod zu initialisieren, stellt also Riverpod-Provider im widhetBaum bereit 
     const ProviderScope(
