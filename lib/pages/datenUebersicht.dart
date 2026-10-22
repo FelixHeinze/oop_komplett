@@ -17,7 +17,7 @@ class _DatenUebersichtPageState extends State<DatenUebersichtPage> {
     'products': 'Produkte',
     'db_kunden': 'Kunden',
     'db_hersteller': 'Hersteller',
-    'db_bestellungen': 'Historische Bestellungen',
+    'db_bestellungen': 'Bestellungen',
     'db_bestellpositionen': 'Bestellpositionen',
   };
 

@@ -27,7 +27,11 @@ class _DbOverwievState extends State<DbOverwiev> {
     _products = api.products();
   }
 
-  void _reload() => setState(() => _products = api.products());
+void _reload() {
+  setState(() {
+    _products = api.products();
+  });
+}
 
   // Wird der Warenkorb-Button gedrückt, braucht der Nutzer ein Login.
   // Erst nach der Anmeldung darf die geschützte API-Operation ausgeführt werden.

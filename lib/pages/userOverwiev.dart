@@ -76,9 +76,11 @@ class _UserOverwievPageState extends State<UserOverwievPage> {
             if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
             if (snapshot.hasError) return Text('Bestellungen konnten nicht geladen werden: ${snapshot.error}');
             final orders = snapshot.data ?? [];
-            if (orders.isEmpty) return const Card(child: ListTile(
+            if (orders.isEmpty) {
+              return const Card(child: ListTile(
               leading: Icon(Icons.receipt_long), title: Text('Noch keine Bestellungen'),
               subtitle: Text('Deine abgeschlossenen Käufe erscheinen hier.')));
+            }
             return Column(children: orders.map((o) => Card(child: ListTile(
               leading: const Icon(Icons.receipt_long),
               title: Text('Bestellung #${o['order_id']}'),
