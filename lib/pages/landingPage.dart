@@ -10,7 +10,7 @@ import 'oop5.dart';
 import 'oop6.dart';
 import 'oop7.dart';
 import 'ein_problem_vier_loesungen.dart';
-import 'dbOverwiev.dart';
+import 'datenbank_aufgabe.dart';
 
 
 
@@ -86,7 +86,7 @@ class LandingPage extends ConsumerWidget {
         title: 'Datenbank1',
         subtitle: 'Lösung mit Xampp',
         icon: Icons.date_range,
-        page: DbOverwiev(), // test für xampp 
+        page: DatenbankAufgabe(), // test für xampp 
       ),
     ];
 //beobachtet den App zustand damit Dark/light mode umgeschaltet werden kann
